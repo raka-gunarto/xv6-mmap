@@ -54,6 +54,15 @@ void            stati(struct inode*, struct stat*);
 int             writei(struct inode*, int, uint64, uint, uint);
 void            itrunc(struct inode*);
 
+// mmap.c
+void            mmapinit(void);
+int             mmap_handlepgfault(uint64);
+uint64          mmap_map(struct file*, uint, uint, uint64, int, int);
+int             mmap_unmap(uint64, uint);
+int             mmap_fork(struct proc*, struct proc*);
+void            mmap_forceunmap(struct proc*);
+
+
 // ramdisk.c
 void            ramdiskinit(void);
 void            ramdiskintr(void);

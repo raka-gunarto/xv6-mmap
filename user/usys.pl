@@ -26,6 +26,8 @@ entry("kill");
 entry("exec");
 entry("open");
 entry("mknod");
+entry("mmap");
+entry("munmap");
 entry("unlink");
 entry("fstat");
 entry("link");

@@ -95,6 +95,8 @@ extern uint64 sys_kill(void);
 extern uint64 sys_link(void);
 extern uint64 sys_mkdir(void);
 extern uint64 sys_mknod(void);
+extern uint64 sys_mmap(void);
+extern uint64 sys_munmap(void);
 extern uint64 sys_open(void);
 extern uint64 sys_pipe(void);
 extern uint64 sys_read(void);
@@ -126,6 +128,8 @@ static uint64 (*syscalls[])(void) = {
 [SYS_unlink]  sys_unlink,
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
+[SYS_mmap]    sys_mmap,
+[SYS_munmap]  sys_munmap,
 [SYS_close]   sys_close,
 };
 

@@ -289,6 +289,13 @@ fork(void)
   }
   np->sz = p->sz;
 
+  // copy over mmap VMAs
+  if(mmap_fork(p, np) < 0){
+    freeproc(np);
+    release(&np->lock);
+    return -1;
+  }
+
   // copy saved user registers.
   *(np->trapframe) = *(p->trapframe);
 
@@ -343,6 +350,9 @@ exit(int status)
 
   if(p == initproc)
     panic("init exiting");
+  
+  // unmap all mmap mappings
+  mmap_forceunmap(p);
 
   // Close all open files.
   for(int fd = 0; fd < NOFILE; fd++){
